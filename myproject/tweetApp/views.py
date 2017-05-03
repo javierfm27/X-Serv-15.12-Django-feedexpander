@@ -8,6 +8,7 @@ def obtainTitle(canal):
     titles = []
     for i in range(5):
         titles.append(canal.entries[i].title)
+        titles[i] = "TWET Nº " + str(i + 1) + "<br>" +  titles[i] + "<br>"
     return titles
 # Create your views here.
 @csrf_exempt
@@ -29,5 +30,4 @@ def feedUser(request, user):
     canalRSS = feedparser.parse(stringRSS) #Cada item es una entrada, asique para obtener 5 basta con hacer un bucle
     #Primero obtenemos el tuit
     twets = obtainTitle(canalRSS)
-    print(twets)
     return HttpResponse(twets)
